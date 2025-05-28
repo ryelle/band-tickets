@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  margin: var(--spacing--50) auto;
+  padding-inline: var(--spacing--50);
+  max-width: 75rem;
+  grid-template-columns: 2fr 3fr;
+  gap: var(--spacing--30) var(--spacing--60);
+}
+
+@media (max-width: 50rem) {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.header {
+  grid-column: 1 / span 2;
+}
+
+.form {
+  padding: var(--spacing--40);
+  background: var(--color--slate-20);
+}
