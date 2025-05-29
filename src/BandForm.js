@@ -15,8 +15,8 @@ function BandForm() {
       header={
         <>
           <h1>{band.name}</h1>
-          <p>{format(band.date, "PPPP 'at' p")}</p>
-          <p>{band.location}</p>
+          <p><strong>When:</strong> {format(band.date, "PPPP 'at' p")}</p>
+          <p><strong>Where:</strong> {band.location}</p>
         </>
       }
       sidebar={<Sidebar />}
