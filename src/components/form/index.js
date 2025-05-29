@@ -169,7 +169,7 @@ function Form() {
           />
         </Row>
         <Row style={{ marginBlockStart: "calc(2 * var(--spacing--30))" }}>
-          <Button disabled={isSubmitting}>Submit</Button>
+          <Button disabled={isSubmitting}>Get tickets</Button>
         </Row>
         <div
           className="sr-only"
