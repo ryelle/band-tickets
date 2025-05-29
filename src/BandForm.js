@@ -1,8 +1,10 @@
 // External dependencies
 import DOMPurify from "dompurify";
 import { format } from "date-fns";
+
+// Internal dependencies
+import Form from "./components/form";
 import Layout from "./components/layout";
-import { displayPrice } from "./utils/currency";
 
 function BandForm({ band }) {
   return (
@@ -26,20 +28,7 @@ function BandForm({ band }) {
           />
         </>
       }
-      form={
-        <>
-          <h2>Select tickets</h2>
-          <ul>
-            {band.ticketTypes.map((ticket) => (
-              <li key={ticket.type}>
-                <h3>{ticket.name}</h3>
-                <p>{ticket.description}</p>
-                <p>{displayPrice(ticket.cost)}</p>
-              </li>
-            ))}
-          </ul>
-        </>
-      }
+      form={<Form band={band} />}
     />
   );
 }

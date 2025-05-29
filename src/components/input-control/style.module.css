@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing--10);
+}
+
+.container label {
+  display: block;  
+}
+
+.container input {
+  padding: var(--spacing--10) var(--spacing--30);
+  width: 100%;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: var(--font-size--medium);
+  background-color: var(--color--slate-05);
+  border: 1px solid var(--color--slate-40);
+}
+
+.container input[type="number"] {
+  min-width: 4em;
+}

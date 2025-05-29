@@ -22,3 +22,14 @@
   padding: var(--spacing--40);
   background: var(--color--slate-20);
 }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-block-end: var(--spacing--30);
+  gap: var(--spacing--40);
+}
+
+.row > * {
+  flex-grow: 1;
+}
