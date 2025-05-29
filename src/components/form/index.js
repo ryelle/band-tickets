@@ -83,11 +83,13 @@ function Form() {
           </li>
         ))}
       </ul>
+      <Row>
+        <strong>Total</strong>
+        <div style={{ textAlign: "right" }}>{displayPrice(totalCost)}</div>
+      </Row>
+      <hr />
       <div>
-        <Row>
-          <h2>Total</h2>
-          <div style={{ textAlign: "right" }}>{displayPrice(totalCost)}</div>
-        </Row>
+        <h2>Checkout</h2>
         <Row>
           <InputControl
             label="First name"
