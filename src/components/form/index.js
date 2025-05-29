@@ -47,6 +47,8 @@ function Form() {
       .filter(Boolean);
 
     // In a real app, this would be an API request or some other function call.
+    // Would trigger a "pending" state to disable subsequent submissions,
+    // await the API result, then display either errors or success.
     console.log("Purchase", data);
   };
   return (
