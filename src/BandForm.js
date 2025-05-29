@@ -1,3 +1,5 @@
+// External dependencies
+import DOMPurify from "dompurify";
 import { format } from "date-fns";
 import Layout from "./components/layout";
 import { displayPrice } from "./utils/currency";
@@ -17,7 +19,11 @@ function BandForm({ band }) {
           <figure>
             <img src={band.imgUrl} alt="" />
           </figure>
-          <p>{band.description_blurb}</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(band.description_blurb),
+            }}
+          />
         </>
       }
       form={
