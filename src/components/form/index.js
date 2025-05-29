@@ -1,5 +1,5 @@
 // External dependencies
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Internal dependencies
 import Button from "../button";
@@ -10,9 +10,15 @@ import { useBand } from "../../data/context";
 
 function Form() {
   const band = useBand();
-  const [tickets, setTickets] = useState(
-    band.ticketTypes.map((ticket) => ({ ...ticket, quantity: 0 }))
-  );
+  const [tickets, setTickets] = useState([]);
+  useEffect(() => {
+    const initialTickets = band.ticketTypes.map((ticket) => ({
+      ...ticket,
+      quantity: 0,
+    }));
+    setTickets(initialTickets);
+  }, [band.ticketTypes]);
+
   const [payment, setPayment] = useState({
     firstName: "",
     lastName: "",
@@ -49,7 +55,7 @@ function Form() {
       {/* eslint-disable-next-line jsx-a11y/no-redundant-roles -- Needed since the list style is removed. */}
       <ul role="list">
         {tickets.map((ticket) => (
-          <li key={ticket.type}>
+          <li key={`${band.id}-${ticket.type}`}>
             <Row>
               <div>
                 <h3>{ticket.name}</h3>
