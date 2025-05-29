@@ -113,6 +113,7 @@ function Form() {
         <Row>
           <InputControl
             label="Credit card number"
+            placeholder="5555 5555 5555 4444"
             value={payment.card}
             onChange={(value) => {
               // Ideally this would be a real validation.
