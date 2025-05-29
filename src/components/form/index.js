@@ -12,6 +12,14 @@ function Form() {
   const [tickets, setTickets] = useState(
     band.ticketTypes.map((ticket) => ({ ...ticket, quantity: 0 }))
   );
+  const [payment, setPayment] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    card: "",
+    exp: "",
+    cvv: "",
+  });
   const totalCost = tickets.reduce((acc, ticket) => {
     if (ticket.quantity > 0) {
       acc += ticket.quantity * ticket.cost;
@@ -69,19 +77,68 @@ function Form() {
           <div style={{ textAlign: "right" }}>{displayPrice(totalCost)}</div>
         </Row>
         <Row>
-          <InputControl label="First name" />
-          <InputControl label="Last name" />
+          <InputControl
+            label="First name"
+            value={payment.firstName}
+            onChange={(value) => setPayment({ ...payment, firstName: value })}
+          />
+          <InputControl
+            label="Last name"
+            value={payment.lastName}
+            onChange={(value) => setPayment({ ...payment, lastName: value })}
+          />
         </Row>
         <Row>
-          <InputControl label="Address" />
+          <InputControl
+            label="Address"
+            value={payment.address}
+            onChange={(value) => setPayment({ ...payment, address: value })}
+          />
         </Row>
         <h3>Payment details</h3>
         <Row>
-          <InputControl label="Credit card number" />
+          <InputControl
+            label="Credit card number"
+            value={payment.card}
+            onChange={(value) => {
+              // Ideally this would be a real validation.
+              if (/^[\d ]{0,19}$/.test(value)) {
+                setPayment({ ...payment, card: value });
+              }
+            }}
+          />
         </Row>
         <Row>
-          <InputControl label="Exp" />
-          <InputControl label="CVV" />
+          <InputControl
+            label="Exp"
+            placeholder="MM/YY"
+            value={payment.exp}
+            onBlur={(event) => {
+              // Format
+              let value = event.target.value.replace("/", "");
+              if (value.length === 3 || value.length === 5) {
+                value = "0" + value.slice(0, 1) + "/" + value.slice(1);
+              } else if (value.length === 4 || value.length === 6) {
+                value = value.slice(0, 2) + "/" + value.slice(2);
+              }
+              setPayment({ ...payment, exp: value });
+            }}
+            onChange={(value) => {
+              if (/^\d{0,2}\/?\d{0,4}$/.test(value)) {
+                setPayment({ ...payment, exp: value });
+              }
+            }}
+          />
+          <InputControl
+            label="CVV"
+            placeholder="000"
+            value={payment.cvv}
+            onChange={(value) => {
+              if (/^\d{0,4}$/.test(value)) {
+                setPayment({ ...payment, cvv: value });
+              }
+            }}
+          />
         </Row>
         <button type="submit">Get tickets</button>
       </div>
