@@ -2,8 +2,10 @@
 import { displayPrice } from "../../utils/currency";
 import InputControl from "../input-control";
 import Row from "../layout/row";
+import { useBand } from "../../data/context";
 
-function Form({ band }) {
+function Form() {
+
   return (
     <form>
       <h2>Select tickets</h2>

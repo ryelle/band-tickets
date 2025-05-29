@@ -1,12 +1,15 @@
 // External dependencies
-import DOMPurify from "dompurify";
 import { format } from "date-fns";
 
 // Internal dependencies
 import Form from "./components/form";
 import Layout from "./components/layout";
+import Sidebar from "./components/sidebar";
+import { useBand } from "./data/context";
 
-function BandForm({ band }) {
+function BandForm() {
+  const band = useBand();
+
   return (
     <Layout
       header={
@@ -16,19 +19,8 @@ function BandForm({ band }) {
           <p>{band.location}</p>
         </>
       }
-      sidebar={
-        <>
-          <figure>
-            <img src={band.imgUrl} alt="" />
-          </figure>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(band.description_blurb),
-            }}
-          />
-        </>
-      }
-      form={<Form band={band} />}
+      sidebar={<Sidebar />}
+      form={<Form />}
     />
   );
 }
