@@ -10,6 +10,7 @@ import { useBand } from "../../data/context";
 
 function Form() {
   const band = useBand();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
     const initialTickets = band.ticketTypes.map((ticket) => ({
@@ -50,6 +51,10 @@ function Form() {
     // Would trigger a "pending" state to disable subsequent submissions,
     // await the API result, then display either errors or success.
     console.log("Purchase", data);
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 5000);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -133,7 +138,7 @@ function Form() {
         </Row>
         <Row>
           <InputControl
-            label="Exp"
+            label="Expiration"
             placeholder="MM/YY"
             value={payment.exp}
             onBlur={(event) => {
@@ -164,8 +169,16 @@ function Form() {
           />
         </Row>
         <Row style={{ marginBlockStart: "calc(2 * var(--spacing--30))" }}>
-          <Button>Submit</Button>
+          <Button disabled={isSubmitting}>Submit</Button>
         </Row>
+        <div
+          className="sr-only"
+          aria-live="polite"
+          aria-relevant="additions text"
+          aria-atomic="true"
+        >
+          {isSubmitting ? "Submitting payment." : ""}
+        </div>
       </div>
     </form>
   );

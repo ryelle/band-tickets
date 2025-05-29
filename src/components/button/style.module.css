@@ -7,11 +7,15 @@
   border: none;
 }
 
-.button:hover {
+.button:not([disabled]):hover {
   background-color: var(--color--slate-70);
 }
 
 .button:focus {
   outline: 2px solid var(--color--slate-70);
   outline-offset: 1px;
+}
+
+.button[disabled] {
+  opacity: 0.8;
 }
