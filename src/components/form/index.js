@@ -107,11 +107,13 @@ function Form() {
           <InputControl
             label="First name"
             value={payment.firstName}
+            required
             onChange={(value) => setPayment({ ...payment, firstName: value })}
           />
           <InputControl
             label="Last name"
             value={payment.lastName}
+            required
             onChange={(value) => setPayment({ ...payment, lastName: value })}
           />
         </Row>
@@ -119,6 +121,7 @@ function Form() {
           <InputControl
             label="Address"
             value={payment.address}
+            required
             onChange={(value) => setPayment({ ...payment, address: value })}
           />
         </Row>
@@ -128,6 +131,7 @@ function Form() {
             label="Credit card number"
             placeholder="5555 5555 5555 4444"
             value={payment.card}
+            required
             onChange={(value) => {
               // Ideally this would be a real validation.
               if (/^[\d ]{0,19}$/.test(value)) {
@@ -141,6 +145,7 @@ function Form() {
             label="Expiration"
             placeholder="MM/YY"
             value={payment.exp}
+            required
             onBlur={(event) => {
               // Format
               let value = event.target.value.replace("/", "");
@@ -161,6 +166,7 @@ function Form() {
             label="CVV"
             placeholder="000"
             value={payment.cvv}
+            required
             onChange={(value) => {
               if (/^\d{0,4}$/.test(value)) {
                 setPayment({ ...payment, cvv: value });
