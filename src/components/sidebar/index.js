@@ -8,7 +8,7 @@ function Sidebar() {
   const band = useBand();
 
   return (
-    <>
+    <div>
       <figure>
         <img src={band.imgUrl} alt="" />
       </figure>
@@ -17,7 +17,7 @@ function Sidebar() {
           __html: DOMPurify.sanitize(band.description_blurb),
         }}
       />
-    </>
+    </div>
   );
 }
 

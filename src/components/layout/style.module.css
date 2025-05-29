@@ -18,6 +18,17 @@
   grid-column: 1 / span 2;
 }
 
+.sidebar > div {
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 50rem) {
+  .sidebar > div {
+    position: initial;
+  }
+}
+
 .form {
   padding: var(--spacing--40);
   background: var(--color--slate-20);
