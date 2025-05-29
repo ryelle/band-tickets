@@ -29,7 +29,18 @@ function Form() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("form data");
+    // Rough idea of what data might be needed for processing.
+    const data = {
+      band: band.id,
+      payment: payment,
+      cost: totalCost,
+    };
+    data.tickets = tickets
+      .map((t) => (t.quantity > 0 ? [t.type, t.quantity] : false))
+      .filter(Boolean);
+
+    // In a real app, this would be an API request or some other function call.
+    console.log("Purchase", data);
   };
   return (
     <form onSubmit={handleSubmit}>
