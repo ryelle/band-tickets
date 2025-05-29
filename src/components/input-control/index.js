@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useId } from "react";
 
 // Internal dependencies
-import style from "./style.module.css";
+import css from "./style.module.css";
 
 export default function InputControl({
   label,
@@ -20,7 +20,7 @@ export default function InputControl({
   const labelClassName = clsx({ "sr-only": hideLabelFromVision });
 
   return (
-    <div className={style.container}>
+    <div className={css.container}>
       <label className={labelClassName} htmlFor={htmlId}>
         {label}
       </label>
