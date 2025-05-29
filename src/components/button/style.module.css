@@ -1,0 +1,17 @@
+.button {
+  padding: var(--spacing--30) var(--spacing--50);
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: var(--font-size--medium);
+  background-color: var(--color--slate-60);
+  color: white;
+  border: none;
+}
+
+.button:hover {
+  background-color: var(--color--slate-70);
+}
+
+.button:focus {
+  outline: 2px solid var(--color--slate-70);
+  outline-offset: 1px;
+}

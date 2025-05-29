@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 // Internal dependencies
+import Button from "../button";
 import { displayPrice } from "../../utils/currency";
 import InputControl from "../input-control";
 import Row from "../layout/row";
@@ -151,7 +152,9 @@ function Form() {
             }}
           />
         </Row>
-        <button type="submit">Get tickets</button>
+        <Row style={{ marginBlockStart: "calc(2 * var(--spacing--30))" }}>
+          <Button>Submit</Button>
+        </Row>
       </div>
     </form>
   );

@@ -17,6 +17,11 @@
   border: 1px solid var(--color--slate-40);
 }
 
+.container input:focus {
+  outline: 2px solid var(--color--slate-70);
+  outline-offset: 1px;
+}
+
 .container input[type="number"] {
   min-width: 4em;
 }
