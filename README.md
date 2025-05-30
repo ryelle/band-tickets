@@ -14,9 +14,9 @@ Form fields are labeled correctly for screen reader users. The labels are also v
 
 The form fields are disabled until you select a ticket, to prevent "buying" no tickets.
 
-When you submit the form, it logs the band ID, ticket info, and payment details to the console. It also gives a confirmation message for screen reader users. Some fields already have basic validation, but I’d suggest using a tool like [card-validator](https://github.com/braintree/card-validator) to improve validation for credit card inputs.
+When you submit the form, it logs the band ID, ticket info, and payment details to the console. Some fields already have basic validation, but I’d suggest using a tool like [card-validator](https://github.com/braintree/card-validator) to improve validation for credit card inputs.
 
-Right now, there’s no visible confirmation after submitting. In a real site, it’d be good to show a success message or clearly flag any errors so users know what’s going on.
+Right now, the only confirmation after submitting is that the button disables for 5 seconds (an "API request"), and a status announcement is made for screen reader users. After 5 seconds, the form becomes active again. In a real site, it’d be good to show a success message or clearly flag any errors so users know what’s going on.
 
 I’ve added minimum limits to the quantity input fields to prevent negative numbers, and set a cap of 10 tickets just to keep the value visible in the small space.
 
