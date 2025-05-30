@@ -134,6 +134,8 @@ function Form() {
             label="Credit card number"
             placeholder="5555 5555 5555 4444"
             value={payment.card}
+            inputMode="numeric"
+            pattern="[0-9 ]*"
             required
             disabled={!totalCost}
             onChange={(value) => {
@@ -149,6 +151,7 @@ function Form() {
             label="Expiration"
             placeholder="MM/YY"
             value={payment.exp}
+            pattern="[0-9\/]*"
             required
             disabled={!totalCost}
             onBlur={(event) => {
@@ -171,6 +174,8 @@ function Form() {
             label="CVV"
             placeholder="000"
             value={payment.cvv}
+            inputMode="numeric"
+            pattern="[0-9]*"
             required
             disabled={!totalCost}
             onChange={(value) => {
