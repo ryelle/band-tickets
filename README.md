@@ -2,6 +2,8 @@
 
 This page displays band & event info with a ticket and payment form.
 
+https://ryelle.github.io/band-tickets/
+
 ## Accessibility
 
 The page mostly meets WCAG AA standards, except for one thing: the band-provided images don’t have alt text. To fix this, I suggest updating the JSON data format so that each image entry uses an `img` object with `url` and `alt` fields. Optionally, `img` could support an array if we want to support galleries.
