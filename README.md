@@ -1,59 +1,33 @@
-# Create a form for touring bands!
+# Band Tickets
 
-## Overview
+This page displays band & event info with a ticket and payment form.
 
-For this exercise, you'll create a simple form that allows users to purchase tickets to a concert for a given band.
+## Accessibility
 
-You'll find included in this repo:
+The page mostly meets WCAG AA standards, except for one thing: the band-provided images don’t have alt text. To fix this, I suggest updating the JSON data format so that each image entry uses an `img` object with `url` and `alt` fields. Optionally, `img` could support an array if we want to support galleries.
 
-1. Three JSON files (located in `src/band-json/`) that represent the data structure that the form should be able to accommodate
-2. A Wireframe ("BandTickets_Anonymous.png") that should help guide you as a loose representation of what the form should be structured like
-3. A starter React project
+Form fields are labeled correctly for screen reader users. The labels are also visible so sighted users can easily see which input is for what, and to make sure the accessible name matches the visual label—which also helps users who rely on speech input. Ideally, I’d share this feedback with the designer early on so we can work together on the best way to implement it before development starts.
 
-We'd like you to build on the included React project that has been scaffolded using `create-react-app`. Feel free to add any javascript libraries that you typically use or think are a good fit for this project. For styling, you're welcome to write custom CSS, use a component library, or do some combination of both.
+## Form Behavior
 
-## Acceptance Criteria
+The form fields are disabled until you select a ticket, to prevent "buying" no tickets.
 
-The acceptance criteria for this exercise is that after consuming any of the JSON objects from the band-json directory, the form should include:
+When you submit the form, it logs the band ID, ticket info, and payment details to the console. It also gives a confirmation message for screen reader users. Some fields already have basic validation, but I’d suggest using a tool like [card-validator](https://github.com/braintree/card-validator) to improve validation for credit card inputs.
 
-1. The band name, description, location, date, and image to learn about the concert
-2. A list of ticket types that includes their metadata and the ability to add any number of tickets of each type
-3. A total amount section that adds up the ticket prices
-4. Some basic inputs for adding credit card and personal information
-5. A button to purchase the tickets
+Right now, there’s no visible confirmation after submitting. In a real site, it’d be good to show a success message or clearly flag any errors so users know what’s going on.
 
-## Some Things To Consider
+I’ve added minimum limits to the quantity input fields to prevent negative numbers, and set a cap of 10 tickets just to keep the value visible in the small space.
 
-When the "Get Tickets" button is clicked, you can add a `console.log()` or an `alert()` with the data that would be sent to a hypothetical backend server. This exercise is specifically geared towards candidates applying for a Front End focused role at ATS, which is why we are asking for folks not to add any data persistence or backend logic.
+## Observations
 
-The tour date cost is listed as cents, so `500` would be `$5`.
+- General Admission availability: Some bands don’t have GA tickets. That might be intentional, but in real-world use, it’s worth clarifying.
+- Description field: Since band descriptions can include HTML, I sanitize them with [DOMPurify](https://www.npmjs.com/package/dompurify). This does have the effect of truncating the kpop description, since it's malformed HTML.
+- Timezones: The current setup defaults to the user’s timezone, which works if events are local or streamed. But for in-person events, using the venue’s timezone is usually more accurate (yes, I’ve run into this before 😅).
+- Currency: I assume prices are in USD. If we add international events, we’d need to support other currencies, number formats, and possibly different payment methods (not everyone uses credit cards).
 
-The wireframe is a rough estimate of the layout of the form that we expect, but it's not necessary to match it exactly. The most important parts are the general page structure (two columns, with the description area on the left), and an approximate location of where the various page elements should be.
+## Out of Scope (but worth mentioning)
 
-## Rough time estimate for this exercise
-
-Doing a technical exercise on top of having all the other stuff you have to do during a week can be a challenge, so first off: thank you for taking the time to do this take-home.
-
-In general, we recommend spending **about 2 hours on this exercise**, the first chunk of which is likely just reading through this document and choosing an approach. If you can't find that amount of time because of work or life or anything else, get through as much as you are able to (and please feel free to reach out to get additional time!). We'll take a look at your submission no matter how far long you've made it in the process.
-
-If you complete the core acceptance criteria, and want to get creative with the exercise, then you might consider 1 or 2 of the following options:
-
-1. Style the forms so they look fabulloooussss
-2. Write some tests using Jest (or any library you prefer)
-3. Add types
-4. Deploy this somewhere
-5. Make it [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/) compliant
-
-## Questions
-
-If you have questions about this assignment, from the specific to the broad, please feel free to reach out to your recruiter point of contact or to the hiring manager. Good luck!
-
-## Submission
-
-To submit your solution, please upload a text file or `README` to Greenhouse that includes the following:
-
-1. A link to your code that we can access, such as a Google Drive folder or a Github repo
-2. A description of how to run your code
-3. Anything else we should know
-
-If you're having any trouble at all with Greenhouse, feel free to email us the file instead.
+- Routing & API integration: Right now, changing bands means manually updating the band variable. Adding routing (like `/btess` or `/flaming-potatoes`) could make this smoother. A backend with an API could manage the event data as more events are added.
+- Internationalization: Supporting multiple languages would need i18n tools. I’m most familiar with the tools WordPress uses (gettext style), but I’ve also used [react-intl](https://formatjs.github.io/docs/getting-started/installation/), which works well with React apps. RTL languages, font choices, and spacing for translated strings would also need attention.
+- Styling options: Features like dark mode or allowing a custom band color could be fun improvements.
+- Multi-step form/component refactor: To make it more user-friendly, we could separate ticket selection and payment into separate steps. The form InputControl could be wrapped into type-specific components for self-contained validation & error states. For example, the address field could use autocomplete (Google Maps or Mapbox).
