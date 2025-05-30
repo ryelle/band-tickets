@@ -25,3 +25,7 @@
 .container input[type="number"] {
   min-width: 4em;
 }
+
+.container input[disabled] {
+  opacity: 0.8;
+}

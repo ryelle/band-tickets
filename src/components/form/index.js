@@ -108,12 +108,14 @@ function Form() {
             label="First name"
             value={payment.firstName}
             required
+            disabled={!totalCost}
             onChange={(value) => setPayment({ ...payment, firstName: value })}
           />
           <InputControl
             label="Last name"
             value={payment.lastName}
             required
+            disabled={!totalCost}
             onChange={(value) => setPayment({ ...payment, lastName: value })}
           />
         </Row>
@@ -122,6 +124,7 @@ function Form() {
             label="Address"
             value={payment.address}
             required
+            disabled={!totalCost}
             onChange={(value) => setPayment({ ...payment, address: value })}
           />
         </Row>
@@ -132,6 +135,7 @@ function Form() {
             placeholder="5555 5555 5555 4444"
             value={payment.card}
             required
+            disabled={!totalCost}
             onChange={(value) => {
               // Ideally this would be a real validation.
               if (/^[\d ]{0,19}$/.test(value)) {
@@ -146,6 +150,7 @@ function Form() {
             placeholder="MM/YY"
             value={payment.exp}
             required
+            disabled={!totalCost}
             onBlur={(event) => {
               // Format
               let value = event.target.value.replace("/", "");
@@ -167,6 +172,7 @@ function Form() {
             placeholder="000"
             value={payment.cvv}
             required
+            disabled={!totalCost}
             onChange={(value) => {
               if (/^\d{0,4}$/.test(value)) {
                 setPayment({ ...payment, cvv: value });
@@ -175,7 +181,7 @@ function Form() {
           />
         </Row>
         <Row style={{ marginBlockStart: "calc(2 * var(--spacing--30))" }}>
-          <Button disabled={isSubmitting}>Get tickets</Button>
+          <Button disabled={! totalCost || isSubmitting}>Get tickets</Button>
         </Row>
         <div
           className="sr-only"
