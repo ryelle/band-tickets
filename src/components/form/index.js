@@ -1,5 +1,5 @@
 // External dependencies
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // Internal dependencies
 import Button from "../button";
@@ -9,17 +9,14 @@ import Row from "../layout/row";
 import { useBand } from "../../data/context";
 
 function Form() {
-  const band = useBand();
+  const { ticketTypes, ...band } = useBand();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [tickets, setTickets] = useState([]);
-  useEffect(() => {
-    const initialTickets = band.ticketTypes.map((ticket) => ({
+  const [tickets, setTickets] = useState(
+    ticketTypes.map((ticket) => ({
       ...ticket,
       quantity: 0,
-    }));
-    setTickets(initialTickets);
-  }, [band.ticketTypes]);
-
+    }))
+  );
   const [payment, setPayment] = useState({
     firstName: "",
     lastName: "",
@@ -186,7 +183,7 @@ function Form() {
           />
         </Row>
         <Row style={{ marginBlockStart: "calc(2 * var(--spacing--30))" }}>
-          <Button disabled={! totalCost || isSubmitting}>Get tickets</Button>
+          <Button disabled={!totalCost || isSubmitting}>Get tickets</Button>
         </Row>
         <div
           className="sr-only"

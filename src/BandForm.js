@@ -20,7 +20,7 @@ function BandForm() {
         </>
       }
       sidebar={<Sidebar />}
-      form={<Form />}
+      form={<Form key={band.id} />}
     />
   );
 }
